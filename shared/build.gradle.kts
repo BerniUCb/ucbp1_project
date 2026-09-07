@@ -1,3 +1,4 @@
+import dev.detekt.gradle.Detekt
 import org.jetbrains.kotlin.gradle.dsl.JvmTarget
 
 plugins {
@@ -5,6 +6,38 @@ plugins {
     alias(libs.plugins.androidMultiplatformLibrary)
     alias(libs.plugins.composeMultiplatform)
     alias(libs.plugins.composeCompiler)
+    alias(libs.plugins.detekt)
+}
+
+detekt {
+    source.setFrom(
+        "src/commonMain/kotlin",
+        "src/androidMain/kotlin",
+        "src/iosMain/kotlin"
+    )
+    config.setFrom(files("${rootDir}/config/detekt/detekt.yml"))
+    buildUponDefaultConfig = true
+    ignoreFailures = false
+}
+
+tasks.withType<Detekt>().configureEach {
+    include("**/*.kt", "**/*.kts")
+    exclude("**/build/**")
+}
+
+tasks.register<Detekt>("detektAll") {
+    description = "Analiza todo el código fuente KMP"
+    group = "verification"
+
+    // Incluye todo el directorio src del módulo
+    setSource(files("src"))
+    include("**/*.kt", "**/*.kts")
+    exclude("**/build/**")
+
+    reports {
+        html.required.set(true)
+        sarif.required.set(true)
+    }
 }
 
 kotlin {

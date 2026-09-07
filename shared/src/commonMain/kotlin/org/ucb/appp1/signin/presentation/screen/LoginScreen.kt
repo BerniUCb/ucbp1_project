@@ -45,5 +45,4 @@ fun LoginScreen( viewModel: LoginViewModel = koinViewModel()) {
             Text("Login")
         }
     }
-
 }

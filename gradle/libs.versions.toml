@@ -14,6 +14,7 @@ junit = "4.13.2"
 koin = "4.2.2"
 kotlin = "2.4.10"
 material3 = "1.11.0-alpha07"
+detetk = "2.0.0-alpha.6"
 
 [libraries]
 koin-android = { module = "io.insert-koin:koin-android" }
@@ -44,3 +45,4 @@ androidMultiplatformLibrary = { id = "com.android.kotlin.multiplatform.library",
 composeMultiplatform = { id = "org.jetbrains.compose", version.ref = "composeMultiplatform" }
 composeCompiler = { id = "org.jetbrains.kotlin.plugin.compose", version.ref = "kotlin" }
 kotlinMultiplatform = { id = "org.jetbrains.kotlin.multiplatform", version.ref = "kotlin" }
+detekt = { id = "dev.detekt", version.ref = "detetk"}
