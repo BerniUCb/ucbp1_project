@@ -90,6 +90,7 @@ kotlin {
             implementation(libs.koin.core)
             implementation(libs.koin.compose)
             implementation(libs.koin.compose.viewmodel)
+            implementation("io.arrow-kt:arrow-core:1.2.1")
 
         }
         commonTest.dependencies {

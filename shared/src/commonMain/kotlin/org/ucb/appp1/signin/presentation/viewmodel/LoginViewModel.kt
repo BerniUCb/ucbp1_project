@@ -48,18 +48,16 @@ class LoginViewModel(
                     viewModelScope.launch {
                         authenticateUseCase.invoke(Email(state.value.email), Password(state.value.password))
                             .fold(
-                                onSuccess = {
-                                    emitEffect(LoginEffects.NavigateToHome)
-                                },
-                                onFailure = {
+                                ifLeft = {
                                     emitEffect(LoginEffects.ShowToast("Credential Invalid"))
+                                },
+                                ifRight = {
+                                    emitEffect(LoginEffects.NavigateToHome)
                                 }
                             )
                     }
-
                 }
             }
         }
     }
-
 }
