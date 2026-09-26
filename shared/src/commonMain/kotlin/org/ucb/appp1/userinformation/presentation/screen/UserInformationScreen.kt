@@ -42,5 +42,8 @@ fun UserInformationScreen( viewModel: UserInformationViewModel = koinViewModel()
         state.value.email?.let {
             Text(it)
         }
+        state.value.avatarUrl?.let {
+            Text(it)
+        }
     }
 }

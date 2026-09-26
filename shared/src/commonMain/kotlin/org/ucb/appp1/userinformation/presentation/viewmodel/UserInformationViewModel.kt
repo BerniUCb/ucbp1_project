@@ -32,7 +32,7 @@ class UserInformationViewModel(
                     findAliasUseCase.invoke(_state.value.alias).fold(
                         onSuccess = { userInfo ->
                             _state.update {
-                                it.copy(email = userInfo.email)
+                                it.copy(email = userInfo.email, avatarUrl = userInfo.avatarUrl)
                             }
                         },
                         onFailure = {
