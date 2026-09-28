@@ -6,8 +6,7 @@ import org.ucb.appp1.movies.domain.repository.MovieRepository
 class GetPopularMovies(
     private val repository: MovieRepository
 ) {
-
-    suspend fun invoke(): List<MovieModel> {
-        return repository.getMovies()
+    suspend fun invoke(): Result<List<MovieModel>> {
+        return repository.popularMovies()
     }
 }
