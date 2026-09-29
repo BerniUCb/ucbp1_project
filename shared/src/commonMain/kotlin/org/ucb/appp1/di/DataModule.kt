@@ -1,6 +1,10 @@
 package org.ucb.appp1.di
 
 import org.koin.dsl.module
+import org.ucb.appp1.articles.data.datasource.ArticleRemoteDataSource
+import org.ucb.appp1.articles.data.repository.ArticleRepositoryImpl
+import org.ucb.appp1.articles.data.service.ArticleClient
+import org.ucb.appp1.articles.domain.repository.ArticleRepository
 import org.ucb.appp1.movies.data.datasource.MovieRemoteDataSource
 import org.ucb.appp1.movies.data.repository.MovieRepositoryImpl
 import org.ucb.appp1.movies.data.service.MovieClient
@@ -17,4 +21,8 @@ val dataModule = module {
     single { MovieClient() }
     single { MovieRemoteDataSource(get()) }
     single<MovieRepository> { MovieRepositoryImpl(get()) }
+
+    single { ArticleClient() }
+    single { ArticleRemoteDataSource(get()) }
+    single<ArticleRepository> { ArticleRepositoryImpl(get()) }
 }
