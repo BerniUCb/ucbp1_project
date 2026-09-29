@@ -8,6 +8,8 @@ import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.launch
 import org.ucb.appp1.articles.domain.usecase.SearchArticles
 
+private const val DEFAULT_QUERY = "machine learning"
+
 class ArticleListViewModel(
     private val searchArticles: SearchArticles
 ) : ViewModel() {
@@ -15,22 +17,13 @@ class ArticleListViewModel(
     val state = _state.asStateFlow()
 
     init {
-        search()
+        loadArticles()
     }
 
-    fun emitEvent(event: ArticleListEvent) {
-        when (event) {
-            is ArticleListEvent.OnQueryChange -> {
-                _state.update { it.copy(query = event.value) }
-            }
-            ArticleListEvent.OnSearch -> search()
-        }
-    }
-
-    private fun search() {
+    private fun loadArticles() {
         viewModelScope.launch {
             _state.update { it.copy(loading = true, error = null) }
-            searchArticles.invoke(_state.value.query).fold(
+            searchArticles.invoke(DEFAULT_QUERY).fold(
                 onSuccess = { list ->
                     _state.update { it.copy(articles = list, loading = false) }
                 },
