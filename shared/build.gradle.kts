@@ -9,7 +9,6 @@ plugins {
     alias(libs.plugins.detekt)
     alias(libs.plugins.kotlinSerialization)
     alias(libs.plugins.ksp)
-    alias(libs.plugins.androidx.room3)
 }
 
 detekt {
@@ -60,7 +59,7 @@ kotlin {
        minSdk = libs.versions.android.minSdk.get().toInt()
 
        compilerOptions {
-           jvmTarget = JvmTarget.JVM_11
+           jvmTarget = JvmTarget.JVM_17
        }
        androidResources {
            enable = true
@@ -103,7 +102,7 @@ kotlin {
             implementation(libs.coil.network.ktor)
             implementation(libs.androidx.room3.runtime)
             implementation(libs.androidx.sqlite.bundled)
-            implementation(libs.firebase.database)
+            implementation("dev.gitlive:firebase-database:2.7.0")
         }
         commonTest.dependencies {
             implementation(libs.kotlin.test)
@@ -114,10 +113,6 @@ kotlin {
     }
 }
 
-
-room {
-    schemaDirectory("$projectDir/schemas")
-}
 
 dependencies {
     androidRuntimeClasspath(libs.compose.uiTooling)
