@@ -9,6 +9,7 @@ plugins {
     alias(libs.plugins.detekt)
     alias(libs.plugins.kotlinSerialization)
     alias(libs.plugins.ksp)
+    alias(libs.plugins.androidx.room3)
 }
 
 detekt {
@@ -102,6 +103,7 @@ kotlin {
             implementation(libs.coil.network.ktor)
             implementation(libs.androidx.room3.runtime)
             implementation(libs.androidx.sqlite.bundled)
+            implementation(libs.firebase.database)
         }
         commonTest.dependencies {
             implementation(libs.kotlin.test)
@@ -112,6 +114,10 @@ kotlin {
     }
 }
 
+
+room {
+    schemaDirectory("$projectDir/schemas")
+}
 
 dependencies {
     androidRuntimeClasspath(libs.compose.uiTooling)
