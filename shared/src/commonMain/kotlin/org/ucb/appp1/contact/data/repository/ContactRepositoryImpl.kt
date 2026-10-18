@@ -11,9 +11,9 @@ class ContactRepositoryImpl(
 ) : ContactRepository {
 
     override fun observeContact(): Flow<ContactModel> = combine(
-        remoteConfigDataSource.observePhone(),
-        remoteConfigDataSource.observeEmail(),
-        remoteConfigDataSource.observeWhatsappEnabled()
+        remoteConfigDataSource.getPhone(),
+        remoteConfigDataSource.getEmail(),
+        remoteConfigDataSource.isWhatsappEnabled()
     ) { phone, email, whatsappEnabled ->
         ContactModel(
             phone = phone,
