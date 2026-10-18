@@ -1,5 +1,6 @@
 package org.ucb.appp1.contact.data.datasource
 
+import android.util.Log
 import com.google.firebase.remoteconfig.FirebaseRemoteConfig
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow
@@ -16,6 +17,7 @@ actual class RemoteConfigDataSource {
                 "enable_whatsapp" to true
             )
         )
+        Log.d("RemoteConfig", "✅ RemoteConfig inicializado con valores por defecto")
         config
     }
 
@@ -23,8 +25,10 @@ actual class RemoteConfigDataSource {
         try {
             remoteConfig.fetchAndActivate().await()
             val phone = remoteConfig.getString("phone_support")
+            Log.d("RemoteConfig", "📞 Teléfono leído de Firebase: $phone")
             emit(phone.ifEmpty { "+591 7070812" })
         } catch (e: Exception) {
+            Log.e("RemoteConfig", "❌ Error leyendo teléfono: ${e.message}")
             emit("+591 7070812")
         }
     }
@@ -33,8 +37,10 @@ actual class RemoteConfigDataSource {
         try {
             remoteConfig.fetchAndActivate().await()
             val email = remoteConfig.getString("email_support")
+            Log.d("RemoteConfig", "📧 Email leído de Firebase: $email")
             emit(email.ifEmpty { "soporte@empresa.com" })
         } catch (e: Exception) {
+            Log.e("RemoteConfig", "❌ Error leyendo email: ${e.message}")
             emit("soporte@empresa.com")
         }
     }
@@ -43,8 +49,10 @@ actual class RemoteConfigDataSource {
         try {
             remoteConfig.fetchAndActivate().await()
             val enabled = remoteConfig.getBoolean("enable_whatsapp")
+            Log.d("RemoteConfig", "💬 WhatsApp habilitado: $enabled")
             emit(enabled)
         } catch (e: Exception) {
+            Log.e("RemoteConfig", "❌ Error leyendo WhatsApp: ${e.message}")
             emit(true)
         }
     }
