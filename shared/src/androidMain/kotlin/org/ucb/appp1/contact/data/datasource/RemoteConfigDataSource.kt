@@ -5,6 +5,7 @@ import com.google.firebase.remoteconfig.FirebaseRemoteConfig
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow
+import kotlinx.coroutines.tasks.await
 import kotlinx.coroutines.withContext
 
 actual class RemoteConfigDataSource {
@@ -25,8 +26,12 @@ actual class RemoteConfigDataSource {
     init {
         // Fetch async en background, sin bloquear UI
         try {
-            remoteConfig.fetchAndActivate()
-            Log.d("RemoteConfig", "✅ Fetch inicial completado")
+            // Para testing: fetch con 0 segundos (siempre buscar nuevos valores)
+            // En producción, cambiar a 3600 (1 hora) o 43200 (12 horas)
+            remoteConfig.fetch(0).addOnSuccessListener {
+                remoteConfig.activate()
+                Log.d("RemoteConfig", "✅ Fetch inicial completado (nuevos valores descargados)")
+            }
         } catch (e: Exception) {
             Log.e("RemoteConfig", "⚠️ Error en fetch inicial: ${e.message}")
         }
