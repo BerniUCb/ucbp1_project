@@ -28,6 +28,6 @@ val dataModule = module {
     single<DollarRepository> { DollarRepositoryImpl(get()) }
     singleOf(::RealTimeDataBase)
     single<ExchangeRepository> { ExchangeRepositoryImpl(get()) }
-    singleOf(::RemoteConfigDataSource)
+    single<RemoteConfigDataSource> { RemoteConfigDataSource() }
     single<ContactRepository> { ContactRepositoryImpl(get()) }
 }
