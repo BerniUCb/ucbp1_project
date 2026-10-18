@@ -103,6 +103,7 @@ kotlin {
             implementation(libs.androidx.room3.runtime)
             implementation(libs.androidx.sqlite.bundled)
             implementation("dev.gitlive:firebase-database:2.7.0")
+            implementation("dev.gitlive:firebase-remote-config:3.0.0")
         }
         commonTest.dependencies {
             implementation(libs.kotlin.test)

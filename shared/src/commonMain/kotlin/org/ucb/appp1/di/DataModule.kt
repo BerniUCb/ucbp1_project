@@ -14,6 +14,9 @@ import org.ucb.appp1.userinformation.data.datasource.GithubRemoteDataSource
 import org.ucb.appp1.userinformation.data.repository.GithubRepositoryImpl
 import org.ucb.appp1.userinformation.data.service.GitHubApiService
 import org.ucb.appp1.userinformation.domain.repository.GithubRepository
+import org.ucb.appp1.contact.data.datasource.RemoteConfigDataSource
+import org.ucb.appp1.contact.data.repository.ContactRepositoryImpl
+import org.ucb.appp1.contact.domain.repository.ContactRepository
 
 val dataModule = module {
     single<GithubRemoteDataSource> { GitHubApiService() }
@@ -25,4 +28,6 @@ val dataModule = module {
     single<DollarRepository> { DollarRepositoryImpl(get()) }
     singleOf(::RealTimeDataBase)
     single<ExchangeRepository> { ExchangeRepositoryImpl(get()) }
+    singleOf(::RemoteConfigDataSource)
+    single<ContactRepository> { ContactRepositoryImpl(get()) }
 }
