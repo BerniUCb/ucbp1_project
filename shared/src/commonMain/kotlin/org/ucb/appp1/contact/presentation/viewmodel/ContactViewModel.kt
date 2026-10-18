@@ -2,6 +2,7 @@ package org.ucb.appp1.contact.presentation.viewmodel
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.launch
@@ -12,13 +13,7 @@ class ContactViewModel(
     private val getContactUseCase: GetContactUseCase
 ) : ViewModel() {
 
-    private val _contactState = androidx.lifecycle.ViewModel.viewModelScope.run {
-        kotlinx.coroutines.flow.MutableStateFlow(
-            ContactModel()
-        )
-    } as? kotlinx.coroutines.flow.MutableStateFlow<ContactModel>
-        ?: kotlinx.coroutines.flow.MutableStateFlow(ContactModel())
-
+    private val _contactState = MutableStateFlow(ContactModel())
     val contactState: StateFlow<ContactModel> = _contactState.asStateFlow()
 
     init {
