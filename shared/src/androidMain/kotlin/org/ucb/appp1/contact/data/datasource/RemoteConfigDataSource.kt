@@ -2,9 +2,10 @@ package org.ucb.appp1.contact.data.datasource
 
 import android.util.Log
 import com.google.firebase.remoteconfig.FirebaseRemoteConfig
+import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow
-import kotlinx.coroutines.tasks.await
+import kotlinx.coroutines.withContext
 
 actual class RemoteConfigDataSource {
 
@@ -21,10 +22,21 @@ actual class RemoteConfigDataSource {
         config
     }
 
+    init {
+        // Fetch async en background, sin bloquear UI
+        try {
+            remoteConfig.fetchAndActivate()
+            Log.d("RemoteConfig", "✅ Fetch inicial completado")
+        } catch (e: Exception) {
+            Log.e("RemoteConfig", "⚠️ Error en fetch inicial: ${e.message}")
+        }
+    }
+
     actual fun getPhone(): Flow<String> = flow {
         try {
-            remoteConfig.fetchAndActivate().await()
-            val phone = remoteConfig.getString("phone_support")
+            val phone = withContext(Dispatchers.IO) {
+                remoteConfig.getString("phone_support")
+            }
             Log.d("RemoteConfig", "📞 Teléfono leído de Firebase: $phone")
             emit(phone.ifEmpty { "+591 7070812" })
         } catch (e: Exception) {
@@ -35,8 +47,9 @@ actual class RemoteConfigDataSource {
 
     actual fun getEmail(): Flow<String> = flow {
         try {
-            remoteConfig.fetchAndActivate().await()
-            val email = remoteConfig.getString("email_support")
+            val email = withContext(Dispatchers.IO) {
+                remoteConfig.getString("email_support")
+            }
             Log.d("RemoteConfig", "📧 Email leído de Firebase: $email")
             emit(email.ifEmpty { "soporte@empresa.com" })
         } catch (e: Exception) {
@@ -47,8 +60,9 @@ actual class RemoteConfigDataSource {
 
     actual fun isWhatsappEnabled(): Flow<Boolean> = flow {
         try {
-            remoteConfig.fetchAndActivate().await()
-            val enabled = remoteConfig.getBoolean("enable_whatsapp")
+            val enabled = withContext(Dispatchers.IO) {
+                remoteConfig.getBoolean("enable_whatsapp")
+            }
             Log.d("RemoteConfig", "💬 WhatsApp habilitado: $enabled")
             emit(enabled)
         } catch (e: Exception) {
