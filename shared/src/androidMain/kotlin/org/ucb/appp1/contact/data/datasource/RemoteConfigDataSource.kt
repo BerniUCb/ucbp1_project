@@ -7,16 +7,16 @@ import kotlinx.coroutines.tasks.await
 
 actual class RemoteConfigDataSource() {
 
-    private val remoteConfig = FirebaseRemoteConfig.getInstance()
-
-    init {
-        remoteConfig.setDefaultsAsync(
+    private val remoteConfig: FirebaseRemoteConfig by lazy {
+        val config = FirebaseRemoteConfig.getInstance()
+        config.setDefaultsAsync(
             mapOf(
                 "phone_support" to "+591 7070812",
                 "email_support" to "soporte@empresa.com",
                 "enable_whatsapp" to true
             )
         )
+        config
     }
 
     actual fun getPhone(): Flow<String> = flow {
