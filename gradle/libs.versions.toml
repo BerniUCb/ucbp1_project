@@ -21,7 +21,7 @@ coil = "3.3.0"
 room3 = "3.1.0-alpha01"
 sqlite = "2.7.1"
 firebaseDatabase = "2.7.0"
-firebaseRemoteConfig = "3.0.0"
+firebaseRemoteConfig = "1.10.3"
 googleServices = "4.4.2"
 [libraries]
 koin-android = { module = "io.insert-koin:koin-android" }
