@@ -1,5 +1,6 @@
 package org.ucb.appp1.contact.presentation.screen
 
+import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
@@ -10,7 +11,9 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.dp
+import androidx.compose.ui.unit.sp
 import org.koin.compose.viewmodel.koinViewModel
 import org.ucb.appp1.contact.presentation.viewmodel.ContactViewModel
 
@@ -21,20 +24,27 @@ fun ContactScreen(viewModel: ContactViewModel = koinViewModel()) {
     Column(
         modifier = Modifier
             .fillMaxSize()
+            .background(Color.White)
             .padding(16.dp),
         verticalArrangement = Arrangement.Center,
         horizontalAlignment = Alignment.CenterHorizontally
     ) {
-        Text("Contacta con Soporte")
+        Text(
+            "Contacta con Soporte",
+            fontSize = 24.sp,
+            color = Color.Black,
+            modifier = Modifier.padding(bottom = 24.dp)
+        )
 
         Text(
             text = "Teléfono: ${contact.value.phone}",
+            fontSize = 16.sp,
+            color = Color.Black,
             modifier = Modifier.padding(16.dp)
         )
 
         Button(
             onClick = {
-                // Aquí irían las acciones de llamada
                 println("Llamar a: ${contact.value.phone}")
             },
             modifier = Modifier.padding(8.dp)
@@ -45,7 +55,6 @@ fun ContactScreen(viewModel: ContactViewModel = koinViewModel()) {
         if (contact.value.whatsappEnabled) {
             Button(
                 onClick = {
-                    // Aquí irían las acciones de WhatsApp
                     println("WhatsApp a: ${contact.value.phone}")
                 },
                 modifier = Modifier.padding(8.dp)
@@ -56,6 +65,8 @@ fun ContactScreen(viewModel: ContactViewModel = koinViewModel()) {
 
         Text(
             text = "Email: ${contact.value.email}",
+            fontSize = 16.sp,
+            color = Color.Black,
             modifier = Modifier.padding(16.dp)
         )
 
