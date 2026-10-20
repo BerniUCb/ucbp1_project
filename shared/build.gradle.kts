@@ -81,8 +81,6 @@ kotlin {
             implementation(libs.koin.android)
             implementation(libs.ktor.client.okhttp)
             implementation(libs.androidx.room3.sqlite.wrapper)
-            implementation(libs.firebase.remote.config)
-            implementation("org.jetbrains.kotlinx:kotlinx-coroutines-play-services:1.7.3")
         }
         commonMain.dependencies {
             implementation(libs.compose.runtime)
@@ -105,6 +103,7 @@ kotlin {
             implementation(libs.androidx.room3.runtime)
             implementation(libs.androidx.sqlite.bundled)
             implementation("dev.gitlive:firebase-database:2.7.0")
+            implementation("dev.gitlive:firebase-config:2.7.0")
         }
         commonTest.dependencies {
             implementation(libs.kotlin.test)
