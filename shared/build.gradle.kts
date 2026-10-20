@@ -83,6 +83,7 @@ kotlin {
             implementation(libs.androidx.room3.sqlite.wrapper)
             implementation(libs.firebase.remote.config)
             implementation("org.jetbrains.kotlinx:kotlinx-coroutines-play-services:1.7.3")
+            implementation(libs.androidx.work.runtime.ktx)
         }
         commonMain.dependencies {
             implementation(libs.compose.runtime)
