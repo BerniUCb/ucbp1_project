@@ -5,6 +5,7 @@ import org.koin.dsl.module
 import org.ucb.appp1.exchange.presentation.viewmodel.ExchangeViewModel
 import org.ucb.appp1.movies.presentation.viewmodel.DollarViewModel
 import org.ucb.appp1.signin.presentation.viewmodel.LoginViewModel
+import org.ucb.appp1.stores.presentation.viewmodel.StoresViewModel
 import org.ucb.appp1.userinformation.presentation.viewmodel.UserInformationViewModel
 
 val presentationModule = module {
@@ -12,4 +13,5 @@ val presentationModule = module {
     viewModelOf(::UserInformationViewModel)
     viewModelOf(::DollarViewModel)
     viewModelOf(::ExchangeViewModel)
+    viewModelOf(::StoresViewModel)
 }
