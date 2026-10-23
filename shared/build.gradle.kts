@@ -104,6 +104,7 @@ kotlin {
             implementation(libs.androidx.sqlite.bundled)
             implementation("dev.gitlive:firebase-database:2.7.0")
             implementation("dev.gitlive:firebase-firestore:2.7.0")
+            implementation("dev.gitlive:firebase-config:2.7.0")
         }
         commonTest.dependencies {
             implementation(libs.kotlin.test)

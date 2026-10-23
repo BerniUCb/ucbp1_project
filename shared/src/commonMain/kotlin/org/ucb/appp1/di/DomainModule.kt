@@ -6,10 +6,12 @@ import org.ucb.appp1.exchange.domain.usecase.ObserveExchangeUseCase
 import org.ucb.appp1.signin.domain.usecase.AuthenticateUseCase
 import org.ucb.appp1.stores.domain.usecase.GetStoresUseCase
 import org.ucb.appp1.userinformation.domain.usecase.FindAliasUseCase
+import org.ucb.appp1.contact.domain.usecase.GetContactUseCase
 
 val domainModule = module {
     singleOf(::AuthenticateUseCase)
     singleOf(::FindAliasUseCase)
     singleOf(::ObserveExchangeUseCase)
     singleOf(::GetStoresUseCase)
+    singleOf(::GetContactUseCase)
 }
