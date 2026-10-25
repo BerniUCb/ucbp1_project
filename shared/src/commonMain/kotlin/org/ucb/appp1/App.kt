@@ -23,6 +23,7 @@ fun App() {
         Column(modifier = Modifier.fillMaxSize()) {
             LogsScreen() // TEMPORAL: botón de prueba gRPC
             NotificationsScreen() // TEMPORAL: muestra el token FCM
+            Box(modifier = Modifier.weight(0.5f)) { ExchangeScreen() } // Realtime DB (app_dollar)
             Box(modifier = Modifier.weight(1f)) { ContactScreen() }
             Box(modifier = Modifier.weight(1f)) { StoresScreen() }
         }
