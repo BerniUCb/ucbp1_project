@@ -53,3 +53,10 @@ android {
         compose = true
     }
 }
+// Wire 7.1.0 trae OkHttp 5.5.0, que exige compileSdk 37 (AGP 9.0.1 solo soporta hasta 36).
+// Se deja la versión que ya usaba Ktor.
+configurations.configureEach {
+    resolutionStrategy.eachDependency {
+        if (requested.group == "com.squareup.okhttp3") useVersion("5.3.2")
+    }
+}

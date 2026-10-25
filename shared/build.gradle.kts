@@ -9,6 +9,7 @@ plugins {
     alias(libs.plugins.detekt)
     alias(libs.plugins.kotlinSerialization)
     alias(libs.plugins.ksp)
+    alias(libs.plugins.wire)
 }
 
 detekt {
@@ -105,6 +106,7 @@ kotlin {
             implementation("dev.gitlive:firebase-database:2.7.0")
             implementation("dev.gitlive:firebase-firestore:2.7.0")
             implementation("dev.gitlive:firebase-config:2.7.0")
+            implementation(libs.wire.grpc.client)
         }
         commonTest.dependencies {
             implementation(libs.kotlin.test)
@@ -115,6 +117,11 @@ kotlin {
     }
 }
 
+wire {
+    kotlin {
+        rpcRole = "client"
+    }
+}
 
 dependencies {
     androidRuntimeClasspath(libs.compose.uiTooling)

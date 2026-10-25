@@ -20,6 +20,9 @@ import org.ucb.appp1.userinformation.domain.repository.GithubRepository
 import org.ucb.appp1.contact.data.datasource.RemoteConfigDataSource
 import org.ucb.appp1.contact.data.repository.ContactRepositoryImpl
 import org.ucb.appp1.contact.domain.repository.ContactRepository
+import org.ucb.appp1.logs.data.datasource.LogsRemoteDataSource
+import org.ucb.appp1.logs.data.repository.LogsRepositoryImpl
+import org.ucb.appp1.logs.domain.repository.LogsRepository
 
 val dataModule = module {
     single<GithubRemoteDataSource> { GitHubApiService() }
@@ -35,4 +38,6 @@ val dataModule = module {
     single<StoresRepository> { StoresRepositoryImpl(get()) }
     single<RemoteConfigDataSource> { RemoteConfigDataSource() }
     single<ContactRepository> { ContactRepositoryImpl(get()) }
+    single { LogsRemoteDataSource(get()) }
+    single<LogsRepository> { LogsRepositoryImpl(get()) }
 }
