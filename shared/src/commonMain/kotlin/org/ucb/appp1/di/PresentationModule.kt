@@ -9,6 +9,7 @@ import org.ucb.appp1.stores.presentation.viewmodel.StoresViewModel
 import org.ucb.appp1.userinformation.presentation.viewmodel.UserInformationViewModel
 import org.ucb.appp1.contact.presentation.viewmodel.ContactViewModel
 import org.ucb.appp1.logs.presentation.viewmodel.LogsViewModel
+import org.ucb.appp1.notifications.presentation.viewmodel.NotificationsViewModel
 
 val presentationModule = module {
     viewModelOf(::LoginViewModel)
@@ -18,4 +19,5 @@ val presentationModule = module {
     viewModelOf(::StoresViewModel)
     viewModelOf(::ContactViewModel)
     viewModelOf(::LogsViewModel)
+    viewModelOf(::NotificationsViewModel)
 }

@@ -14,6 +14,7 @@ import org.ucb.appp1.stores.presentation.screen.StoresScreen
 import org.ucb.appp1.userinformation.presentation.screen.UserInformationScreen
 import org.ucb.appp1.contact.presentation.screen.ContactScreen
 import org.ucb.appp1.logs.presentation.screen.LogsScreen
+import org.ucb.appp1.notifications.presentation.screen.NotificationsScreen
 
 @Composable
 @Preview
@@ -21,6 +22,7 @@ fun App() {
     MaterialTheme {
         Column(modifier = Modifier.fillMaxSize()) {
             LogsScreen() // TEMPORAL: botón de prueba gRPC
+            NotificationsScreen() // TEMPORAL: muestra el token FCM
             Box(modifier = Modifier.weight(1f)) { ContactScreen() }
             Box(modifier = Modifier.weight(1f)) { StoresScreen() }
         }

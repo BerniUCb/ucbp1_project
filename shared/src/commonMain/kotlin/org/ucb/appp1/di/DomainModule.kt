@@ -8,6 +8,7 @@ import org.ucb.appp1.stores.domain.usecase.GetStoresUseCase
 import org.ucb.appp1.userinformation.domain.usecase.FindAliasUseCase
 import org.ucb.appp1.contact.domain.usecase.GetContactUseCase
 import org.ucb.appp1.logs.domain.usecase.SendLogUseCase
+import org.ucb.appp1.notifications.domain.usecase.GetFcmTokenUseCase
 
 val domainModule = module {
     singleOf(::AuthenticateUseCase)
@@ -16,4 +17,5 @@ val domainModule = module {
     singleOf(::GetStoresUseCase)
     singleOf(::GetContactUseCase)
     singleOf(::SendLogUseCase)
+    singleOf(::GetFcmTokenUseCase)
 }
