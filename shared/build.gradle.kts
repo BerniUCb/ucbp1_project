@@ -108,6 +108,7 @@ kotlin {
             implementation("dev.gitlive:firebase-config:2.7.0")
             implementation("dev.gitlive:firebase-messaging:2.7.0")
             implementation(libs.wire.grpc.client)
+            implementation("edu.ucb.ds:shared:1.0.0-SNAPSHOT")
         }
         commonTest.dependencies {
             implementation(libs.kotlin.test)
