@@ -37,7 +37,7 @@ La app tiene dos pestañas, una por cada ejercicio:
 
 ---
 
-## Cómo funciona (en palabras simples)
+## Cómo funciona
 
 ### E50-1
 1. Al abrir la app, un **Worker** (tarea en segundo plano) pide a Remote Config el parámetro
