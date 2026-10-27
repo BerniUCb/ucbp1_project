@@ -26,6 +26,14 @@ import org.ucb.appp1.logs.domain.repository.LogsRepository
 import org.ucb.appp1.notifications.data.datasource.MessagingDataSource
 import org.ucb.appp1.notifications.data.repository.NotificationsRepositoryImpl
 import org.ucb.appp1.notifications.domain.repository.NotificationsRepository
+import org.ucb.appp1.sync.data.dao.SyncDao
+import org.ucb.appp1.tasks.data.datasource.StatsRealtimeDataSource
+import org.ucb.appp1.tasks.data.datasource.TasksFirestoreDataSource
+import org.ucb.appp1.tasks.data.repository.TasksRepositoryImpl
+import org.ucb.appp1.tasks.domain.repository.TasksRepository
+import org.ucb.appp1.sync.data.datasource.ConfigRemoteDataSource
+import org.ucb.appp1.sync.data.repository.SyncRepositoryImpl
+import org.ucb.appp1.sync.domain.repository.SyncRepository
 
 val dataModule = module {
     single<GithubRemoteDataSource> { GitHubApiService() }
@@ -43,6 +51,12 @@ val dataModule = module {
     single<ContactRepository> { ContactRepositoryImpl(get()) }
     single { LogsRemoteDataSource(get()) }
     single<LogsRepository> { LogsRepositoryImpl(get()) }
+    single<SyncDao> { get<AppDatabase>().getSyncDao() }
+    singleOf(::ConfigRemoteDataSource)
+    single<SyncRepository> { SyncRepositoryImpl(get(), get()) }
+    singleOf(::TasksFirestoreDataSource)
+    singleOf(::StatsRealtimeDataSource)
+    single<TasksRepository> { TasksRepositoryImpl(get(), get()) }
     singleOf(::MessagingDataSource)
     single<NotificationsRepository> { NotificationsRepositoryImpl(get()) }
 }

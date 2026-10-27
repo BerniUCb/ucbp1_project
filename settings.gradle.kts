@@ -27,7 +27,6 @@ dependencyResolutionManagement {
             }
         }
         mavenCentral()
-        mavenLocal() // Esencial para que Gradle encuentre el Design System publicado en local
     }
 }
 

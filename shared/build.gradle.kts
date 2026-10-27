@@ -82,6 +82,7 @@ kotlin {
             implementation(libs.koin.android)
             implementation(libs.ktor.client.okhttp)
             implementation(libs.androidx.room3.sqlite.wrapper)
+            implementation(libs.androidx.work.runtime.ktx)
         }
         commonMain.dependencies {
             implementation(libs.compose.runtime)
@@ -108,7 +109,6 @@ kotlin {
             implementation("dev.gitlive:firebase-config:2.7.0")
             implementation("dev.gitlive:firebase-messaging:2.7.0")
             implementation(libs.wire.grpc.client)
-            implementation("edu.ucb.ds:shared:1.0.0-SNAPSHOT")
         }
         commonTest.dependencies {
             implementation(libs.kotlin.test)

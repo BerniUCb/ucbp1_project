@@ -10,6 +10,8 @@ import org.ucb.appp1.userinformation.presentation.viewmodel.UserInformationViewM
 import org.ucb.appp1.contact.presentation.viewmodel.ContactViewModel
 import org.ucb.appp1.logs.presentation.viewmodel.LogsViewModel
 import org.ucb.appp1.notifications.presentation.viewmodel.NotificationsViewModel
+import org.ucb.appp1.sync.presentation.viewmodel.SyncViewModel
+import org.ucb.appp1.tasks.presentation.viewmodel.TasksViewModel
 
 val presentationModule = module {
     viewModelOf(::LoginViewModel)
@@ -20,4 +22,6 @@ val presentationModule = module {
     viewModelOf(::ContactViewModel)
     viewModelOf(::LogsViewModel)
     viewModelOf(::NotificationsViewModel)
+    viewModelOf(::SyncViewModel)
+    viewModelOf(::TasksViewModel)
 }
